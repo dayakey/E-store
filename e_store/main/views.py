@@ -1,10 +1,15 @@
 from django.shortcuts import render, redirect
 from .forms import LoginForm
 from django.contrib.auth import authenticate, login, logout
+from .models import Goods
 
 
 def main_page(request):
-    return render(request, "main/index.html")
+    goods = Goods.objects.all()
+    context = {
+        'goods': goods
+    }
+    return render(request, "main/index.html", context)
 
 
 def login_page(request):
@@ -19,6 +24,7 @@ def login_page(request):
             return redirect('main')
 
     return render(request, 'main/login.html', context)
+
 
 def sign_in(request):
     if request.method == "POST":
