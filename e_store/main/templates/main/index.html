@@ -95,10 +95,13 @@ https://templatemo.com/tm-559-zay-shop
                     </a>
                      <div class="search_section">
                   <ul>
-                     {% if request.user.is_authenticated %}
-                     <li><a href="{% url 'login' %}">Log In</a></li>
-                     {% endif %}
-                  </ul>
+   {% if request.user.is_authenticated %}
+   <li><a href="{}">Welcome {{ request.user }}</a></li>
+   <li><a href="{% url 'logout' %}">Logout</a></li>
+   {% else %}
+   <li><a href="{% url 'login' %}">Log In</a></li>
+   {% endif %}
+</ul>
                </div>
                 </div>
             </div>
